@@ -1,7 +1,6 @@
 import React from 'react';
 import { getFunName } from '../helpers';
 
-
 class StorePicker extends React.Component {
   // constructor() {
   //   // runs React.Component first
@@ -20,7 +19,8 @@ class StorePicker extends React.Component {
   // bound to instance
   goToStore = (event) => {
     event.preventDefault();
-    console.log(this);
+    const storeName = this.myInput.current.value;
+    this.props.history.push(`/store/${storeName}`);
   }
 
   render() {
