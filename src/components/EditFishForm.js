@@ -22,6 +22,7 @@ export default class EditFishForm extends Component {
         </select>
         <textarea name='desc' onChange={this.handleChange} value={desc} />
         <input type='text' name='image' onChange={this.handleChange} value={image} />
+        <button onClick={() => this.props.deleteFish(this.props.index)}>Remove Fish</button>
       </div>
     )
   }
