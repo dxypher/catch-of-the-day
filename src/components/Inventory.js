@@ -18,6 +18,14 @@ export default class Inventory extends React.Component {
     owner: null
   }
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.authHandler({ user });
+      }
+    })
+  }
+
   authHandler = async (authData) => {
     const store = await base.fetch(this.props.storeId, { context: this });  // await puts the store name instead of the Promise
     if(!store.owner) {
