@@ -37,7 +37,14 @@ export default class Inventory extends React.Component {
   }
 
   render() {
-    return <Login authenticate={this.authenticate} />;
+    if (!this.state.uid) {
+      return <Login authenticate={this.authenticate} />;
+    }
+
+    if (this.state.uid !== this.state.owner) {
+      return <div><p>Sorry you are not the owner.</p></div>
+    }
+
     return (
       <div>
         <h2>Inventory</h2>
