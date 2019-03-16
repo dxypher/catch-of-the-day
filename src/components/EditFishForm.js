@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class EditFishForm extends Component {
   handleChange = (event) => {
@@ -7,6 +8,18 @@ export default class EditFishForm extends Component {
       [event.currentTarget.name]: event.currentTarget.value
     };
     this.props.updateFish(this.props.index, updatedFish)
+  }
+
+  static propTypes = {
+    fish: PropTypes.shape({
+      image : PropTypes.string,
+      name  : PropTypes.string,
+      desc  : PropTypes.string,
+      status: PropTypes.string,
+      price : PropTypes.number
+    }),
+    index     : PropTypes.string,
+    updateFish: PropTypes.func
   }
 
   render() {

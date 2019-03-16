@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 // () instead or {} for implicit return
 // you can also destructure props... { tagline, age } and then
 // just use tagline instead of props.tagline
@@ -18,4 +18,8 @@ const Header = (props) => (
   </header>
 );
 
+
+Header.propTypes = {
+  tagline: PropTypes.string.isRequired
+}
 export default Header;
