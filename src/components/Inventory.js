@@ -36,18 +36,33 @@ export default class Inventory extends React.Component {
     firebase.auth().signInWithPopup(authProvider).then(this.authHandler);
   }
 
+  logout = async () => {
+    await firebase.auth().signOut();
+    this.setState({
+      uid: null
+    })
+  }
+
   render() {
+    const logout = <button onClick={this.logout}>Log Out</button>
+
     if (!this.state.uid) {
       return <Login authenticate={this.authenticate} />;
     }
 
-    if (this.state.uid !== this.state.owner) {
-      return <div><p>Sorry you are not the owner.</p></div>
+  if (this.state.uid !== this.state.owner) {
+      return (
+        <div>
+          <p>Sorry you are not the owner.</p>
+          {logout}
+        </div>
+      )
     }
 
     return (
       <div>
         <h2>Inventory</h2>
+        {logout}
         {Object.keys(this.props.fishes).map(key => (
           <EditFishForm 
             key        = {key}
